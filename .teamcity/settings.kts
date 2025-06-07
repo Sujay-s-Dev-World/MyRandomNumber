@@ -3,8 +3,12 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.Project
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 
 project {
+    name = "MyRandomNumber"
+
+    vcsRoot(DslContext.settingsRoot)
+
     buildType {
-        id("MyRandomNumber")
+        id("MyRandomNumber_Build")
         name = "Dotnet Restore and Publish"
 
         vcs {
