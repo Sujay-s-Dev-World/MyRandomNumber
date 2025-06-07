@@ -1,36 +1,25 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
-
-version = "2021.2"
+import jetbrains.buildServer.configs.kotlin.v2019_2.Project
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 
 project {
-    buildType(DotnetRestoreAndPublish)
-}
+    buildType {
+        id("Dotnet_Build")
+        name = "Dotnet Restore and Publish"
 
-object DotnetRestoreAndPublish : BuildType({
-    name = "Restore and Publish .NET App"
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        script {
-            name = "Dotnet Restore"
-            scriptContent = "dotnet restore"
-        }
-        script {
-            name = "Dotnet Publish"
-            scriptContent = """
-                dotnet publish -o ./build
-            """.trimIndent()
-        }
-    }
-
-    artifactRules = "+:./build => MyRandomNumber_Artifact.zip"
-
-    triggers {
         vcs {
-            branchFilter = "+:develop"
+            root(DslContext.settingsRoot)
+        }
+
+        steps {
+            script {
+                name = "Dotnet Restore"
+                scriptContent = "dotnet restore"
+            }
+            script {
+                name = "Dotnet Publish"
+                scriptContent = "dotnet publish -o ./build"
+            }
         }
     }
-})
+}
