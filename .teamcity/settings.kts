@@ -1,3 +1,6 @@
+import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
+
 version = "2021.2"
 
 project {
