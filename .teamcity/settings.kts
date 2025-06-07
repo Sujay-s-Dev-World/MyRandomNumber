@@ -4,7 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 
 project {
     buildType {
-        id("Dotnet_Build")
+        id("MyRandomNumber")
         name = "Dotnet Restore and Publish"
 
         vcs {
